@@ -150,7 +150,7 @@ function StateLabel({ state }: { state: PlanRunDetailResponse["planRun"]["state"
 
 function PlanChip({ planId }: { planId: string }) {
 	return (
-		<span className="var(--color-border-strong)) flex h-5 items-center rounded-(--radius-xs) border border-(--color-primary-border, px-1.5 font-mono text-(--color-primary) text-[9px] leading-3">
+		<span className="flex h-5 items-center rounded-(--radius-xs) border border-(--color-border-strong) px-1.5 font-mono text-(--color-primary) text-[9px] leading-3">
 			{planId}
 		</span>
 	);
