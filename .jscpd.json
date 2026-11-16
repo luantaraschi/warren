@@ -3,6 +3,7 @@
 	"pattern": "src/**/*.{ts,tsx}",
 	"ignore": [
 		"**/node_modules/**",
+		"**/.claude/**",
 		"**/__golden__/**",
 		"**/*.test.ts",
 		"**/*.test.tsx",

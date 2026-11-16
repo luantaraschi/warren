@@ -171,6 +171,25 @@ describe("the scoped jscpd config", () => {
 	});
 });
 
+describe("Claude Code worktrees under .claude/ (warren-dfda)", () => {
+	// A worktree is a whole checkout, so a scan that walks into it counts
+	// every file twice: jscpd read 45.7% duplication against a 1.3%
+	// threshold, and knip reported the worktree imports as unlisted.
+	const ignoreOf = (path: string): readonly string[] =>
+		(JSON.parse(readFileSync(resolve(REPO_ROOT, path), "utf8")) as { ignore: string[] }).ignore;
+
+	test("the jscpd configs and knip skip them", () => {
+		for (const config of [".jscpd.json", SCOPED_CONFIG, "knip.json"]) {
+			expect(ignoreOf(config)).toContain("**/.claude/**");
+		}
+	});
+
+	test("git ignores them, which jscpd and knip also honor", () => {
+		const lines = readFileSync(resolve(REPO_ROOT, ".gitignore"), "utf8").split("\n");
+		expect(lines).toContain(".claude/worktrees/");
+	});
+});
+
 describe("defaultSpawn", () => {
 	test("is defined once, in the module that owns the SpawnFn contract", () => {
 		const home = readFileSync(resolve(REPO_ROOT, "src/projects/clone.ts"), "utf8");

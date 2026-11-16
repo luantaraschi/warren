@@ -21,6 +21,9 @@ supabase/
 # stay tracked. Ignore the single seeded file, not the directory.
 .warren/agent.json
 .claude/settings.local.json
+# Claude Code agent worktrees are whole checkouts of this repo; jscpd and
+# knip would scan them as part of the tree (warren-dfda).
+.claude/worktrees/
 
 # pi agent session transcripts: leaked run logs (prompts, thinking, tool
 # calls). Never commit — see sd warren-4c8d.

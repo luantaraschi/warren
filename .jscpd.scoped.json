@@ -2,6 +2,7 @@
 	"pattern": "{src/cli,src/client,src/ui/src/api,src/server/handlers}/**/*.{ts,tsx}",
 	"ignore": [
 		"**/node_modules/**",
+		"**/.claude/**",
 		"**/__golden__/**",
 		"**/*.test.ts",
 		"**/*.test.tsx",
