@@ -67,8 +67,12 @@ concurrency:
 jobs:
   heal:
     runs-on: ubuntu-latest
-    # Skip fork PRs and anything targeting main itself.
+    # Skip fork PRs and anything targeting main itself. Also skip when the
+    # repository has no auto-merge App (no AUTO_MERGE_APP_ID variable, as in
+    # a fork): the heal push needs its token. Merge such a PR locally, where
+    # package.json's prepare script registers the driver.
     if: >-
+      vars.AUTO_MERGE_APP_ID != '' &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.head.ref != 'main'
@@ -204,7 +208,8 @@ jobs:
   # PRs this push just flipped, so they were silently dropped and never
   # rechecked. Poll each candidate like the heal job does instead.
   scan:
-    if: github.event_name == 'push'
+    # Same App guard as the heal job. heal-scan needs this job, so it skips too.
+    if: vars.AUTO_MERGE_APP_ID != '' && github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       prs: ${{ steps.scan.outputs.prs }}

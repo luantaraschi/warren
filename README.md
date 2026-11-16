@@ -1,4 +1,4 @@
-> **No longer maintained (Nov 2026).** MIT licensed: fork freely.
+> **Warren continues here.** [Jaymin West](https://github.com/jayminwest) created warren and led it at [jayminwest/warren](https://github.com/jayminwest/warren) until November 2026. Luan Taraschi, a maintainer of that repository, continues the project in this fork. Issues and pull requests are welcome. Thank you, Jaymin, for warren and for the handoff.
 
 <p align="center">
   <a href="https://warren.run">
@@ -8,14 +8,14 @@
 
 <div align="center">
 
-[![CI](https://img.shields.io/github/actions/workflow/status/jayminwest/warren/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/jayminwest/warren/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/luantaraschi/warren/ci.yml?branch=main&style=for-the-badge&label=CI)](https://github.com/luantaraschi/warren/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/jayminwest/warren?style=for-the-badge&label=Release)](https://github.com/jayminwest/warren/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/4r6r5jUEFE)
 
 <a href="https://www.producthunt.com/products/warren-5?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-warren-5" target="_blank" rel="noopener noreferrer"><img alt="Warren - Infrastructure for coding-agent workloads | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1232085&amp;theme=light&amp;t=1787762729601"></a>
 
-**[Live runs](https://app.warren.run)** · **[Quickstart](#quickstart)** · **[Documentation](docs/README.md)** · **[Demo](https://youtu.be/daa7y8g9BkM)** · **[Roadmap](ROADMAP.md)**
+**[Quickstart](#quickstart)** · **[Documentation](docs/README.md)** · **[Demo](https://youtu.be/daa7y8g9BkM)** · **[Roadmap](ROADMAP.md)**
 
 </div>
 
@@ -26,11 +26,9 @@
 Warren runs agent harnesses as isolated, observable workloads on infrastructure you control. It owns the workspace, run lifecycle, spend limits, live events, intervention, recovery, and Git delivery.
 
 <p align="center">
-  <a href="https://app.warren.run">
-    <img src="docs/screenshots/run-detail.png" alt="A warren run detail page: lifecycle pipeline from admission to Git delivery, live event stream, measured spend, and a merged pull request" width="900">
-  </a>
+  <img src="docs/screenshots/run-detail.png" alt="A warren run detail page: lifecycle pipeline from admission to Git delivery, live event stream, measured spend, and a merged pull request" width="900">
   <br>
-  <em>One run, end to end: lifecycle pipeline, live event stream, measured spend, merged PR. From the <a href="https://app.warren.run">live public instance</a>.</em>
+  <em>One run, end to end: lifecycle pipeline, live event stream, measured spend, merged PR. From the former public instance.</em>
 </p>
 
 ## When a run becomes a workload
@@ -68,15 +66,15 @@ The core guarantee is a pushed workspace branch. Project settings can add PR cre
 
 ## See it running
 
-Every screenshot below is the live public instance at
-[app.warren.run](https://app.warren.run), running warren's own development:
-agents working the warren backlog, on warren.
+The screenshots below come from the public instance that ran warren's own
+development until November 2026: agents working the warren backlog, on warren.
+That instance is offline now.
 
 | | |
 |---|---|
-| [![Operations dashboard](docs/screenshots/operations.png)](https://app.warren.run) | [![Runs list](docs/screenshots/runs.png)](https://app.warren.run/#/runs) |
+| ![Operations dashboard](docs/screenshots/operations.png) | ![Runs list](docs/screenshots/runs.png) |
 | *Operations: control-plane health, lifecycle snapshot, active workloads, structured event log* | *Runs: every workload with state, duration, cost, and Git delivery* |
-| [![Run detail](docs/screenshots/run-detail.png)](https://app.warren.run) | [![Agents](docs/screenshots/agents.png)](https://app.warren.run/#/agents) |
+| ![Run detail](docs/screenshots/run-detail.png) | ![Agents](docs/screenshots/agents.png) |
 | *Run detail: lifecycle pipeline, live event stream, budget, and the merged PR* | *Agents: the harness definitions this instance can dispatch* |
 
 ## Harnesses and runtimes
@@ -188,7 +186,7 @@ See [Extensions](docs/design/extensions.md) for their contracts and current pack
 
 ## Status
 
-Stable (`0.19.3`). The run lifecycle is in continuous use on GKE. It operates against real repositories, including this one. [app.warren.run](https://app.warren.run) exposes the read-only run history and event streams without a login.
+Stable (`0.19.3`). This release is the latest one on npm, and the install script installs it. Until November 2026, the original deployment ran the run lifecycle on GKE against real repositories, including this one. That deployment and its public instance are offline now.
 
 Warren is pre-1.0. Unit, integration, and scenario tests exercise the run lifecycle. The current shared-token trust model remains a deliberate limit.
 

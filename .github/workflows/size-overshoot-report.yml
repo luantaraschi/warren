@@ -49,7 +49,10 @@ permissions:
 jobs:
   report:
     runs-on: ubuntu-latest
+    # No App (no AUTO_MERGE_APP_ID variable, as in a fork): skip instead of
+    # failing at the mint. The CI log still names the file that tripped.
     if: >-
+      vars.AUTO_MERGE_APP_ID != '' &&
       github.event.workflow_run.conclusion == 'failure' &&
       github.event.workflow_run.head_branch != 'main' &&
       github.event.workflow_run.head_repository.full_name == github.repository
