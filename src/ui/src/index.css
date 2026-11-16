@@ -65,8 +65,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-* {
-	border-color: var(--color-border);
+@layer base {
+	* {
+		border-color: var(--color-border);
+	}
 }
 
 /*
