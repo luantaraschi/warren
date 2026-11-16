@@ -42,7 +42,10 @@ permissions:
 jobs:
   autoheal:
     runs-on: ubuntu-latest
+    # No App (no AUTO_MERGE_APP_ID variable, as in a fork): no push token to
+    # heal with, so skip instead of failing at the mint.
     if: >-
+      vars.AUTO_MERGE_APP_ID != '' &&
       github.event.workflow_run.conclusion == 'failure' &&
       github.event.workflow_run.head_branch != 'main' &&
       github.event.workflow_run.head_repository.full_name == github.repository

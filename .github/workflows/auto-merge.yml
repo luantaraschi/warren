@@ -60,18 +60,24 @@ jobs:
   # rules (`isCandidate` in scripts/ui-visual/required-checks.ts) mirror this
   # `if:`. A workflow_run workflow always runs from the default branch, and
   # the sweep reads every PR field from the API, never from the payload.
+  #
+  # A repository without the auto-merge App (no AUTO_MERGE_APP_ID variable,
+  # as in a fork) skips the whole workflow. Without the guard, every owner PR
+  # passed the three gates and then failed at the token mint. PRs there merge
+  # by hand. release.yml's app-heartbeat still reports a lost variable.
   targets:
     runs-on: ubuntu-latest
     if: >-
-      github.event_name == 'workflow_run' ||
-      (!github.event.pull_request.draft &&
-       (github.event.pull_request.user.login == github.repository_owner ||
-        (vars.AUTO_MERGE_BOT_LOGIN != '' &&
-         contains(format(',{0},', vars.AUTO_MERGE_BOT_LOGIN),
-                  format(',{0},', github.event.pull_request.user.login)))) &&
-       !contains(github.event.pull_request.labels.*.name, 'no-automerge') &&
-       ((github.event.action != 'labeled' && github.event.action != 'unlabeled') ||
-        github.event.label.name == 'ui-baseline-approved'))
+      vars.AUTO_MERGE_APP_ID != '' &&
+      (github.event_name == 'workflow_run' ||
+       (!github.event.pull_request.draft &&
+        (github.event.pull_request.user.login == github.repository_owner ||
+         (vars.AUTO_MERGE_BOT_LOGIN != '' &&
+          contains(format(',{0},', vars.AUTO_MERGE_BOT_LOGIN),
+                   format(',{0},', github.event.pull_request.user.login)))) &&
+        !contains(github.event.pull_request.labels.*.name, 'no-automerge') &&
+        ((github.event.action != 'labeled' && github.event.action != 'unlabeled') ||
+         github.event.label.name == 'ui-baseline-approved')))
     outputs:
       prs: ${{ steps.event.outputs.prs || steps.sweep.outputs.prs }}
     steps:
